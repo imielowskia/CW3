@@ -11,17 +11,14 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
+
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <span class="input-group-text">Nazwa i semestr:</span>
+    </div>
+    <%= form.text_field :name, class: "form-control" %>
+    <%= form.number_field :semestr, class: "form-control" %>
+    <%= form.submit class: "btn btn-primary btn-sm" %>
   </div>
 
-  <div class="field">
-    <%= form.label :semestr %>
-    <%= form.number_field :semestr %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
 <% end %>
