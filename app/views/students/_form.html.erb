@@ -25,17 +25,27 @@
 
   </table>
   <div class="field bg-light w-50">
-    <b>Grupy:</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <p class="float-left"><b>Grupy:</b></p>&nbsp;&nbsp;&nbsp;&nbsp;
     <div class="form-check form-check-inline">
       <%= form.collection_check_boxes :group_ids, Group.all, :id, :name do |b| %>
 
-        <%= b.check_box class: "form-check-input"%>&nbsp;&nbsp;<%= b.label class: "form-check-label" %>&nbsp;&nbsp;&nbsp;&nbsp;
+            <%= b.check_box class: "form-check-input"%>&nbsp;&nbsp;<%= b.label class: "form-check-label" %>&nbsp;&nbsp;&nbsp;&nbsp;
 
       <% end %>
     </div>
   </div>
 
+  <div class="field bg-light w-50">
+    <p class="float-left"><b>Przedmioty:</b></p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <div class="form-check form-check-inline">
+      <%= form.collection_check_boxes :course_ids, Course.all, :id, :name do |b| %>
 
+        <%= b.check_box class: "form-check-input"%>&nbsp;&nbsp;<%= b.label class: "form-check-label" %>&nbsp;&nbsp;&nbsp;&nbsp;
+
+      <% end %>
+    </div>
+
+  </div>
 
   <div class="actions">
     <%= form.submit class: 'btn btn-primary btn-sm' %>
