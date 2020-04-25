@@ -1,0 +1,36 @@
+<p id="notice"><%= notice %></p>
+
+
+<div class="jumbotron">
+  <h1>Przedmiot:</h1>
+  <table class="table w-75">
+    <thead class="bg-secondary">
+    <th class="col-2">Nazwa</th>
+    <th class="col-2">ECTS</th>
+    </thead>
+    <tr class="bg-light">
+      <td><%= @course.name %></td>
+      <td><%= @course.ects %></td>
+    </tr>
+  </table>
+
+  <%= form_for :oceny, url: "oceny" do |o| %>
+    <%= o.hidden_field "course_id", value: @course.id  %>
+
+    <%  @course.course_students.each do |s| %>
+      <div class="row">
+        <div class="col-sm-2"><%= s.student.fname %></div>
+        <div class="col-sm-0.5"><%= o.number_field :grade , name: 'grade_'+s.student_id.to_s, value: s.grade %></div>
+      </div>
+
+    <% end %>
+
+    <%= o.submit 'zapisz oceny', class: 'btn btn-primary btn-sm' %>
+    <%= link_to 'Back', courses_path, class: 'btn btn-sm btn-primary' %>
+  <% end %>
+
+
+
+</div>
+
+

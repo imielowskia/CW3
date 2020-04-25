@@ -1,0 +1,31 @@
+<%= form_with(model: course, local: true) do |form| %>
+  <% if course.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(course.errors.count, "error") %> prohibited this course from being saved:</h2>
+
+      <ul>
+        <% course.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="input-group mb-3 w-50">
+    <div class="input-group-prepend col-sm-2.5">
+      <span class="input-group-text">Nazwa i semestr:</span>
+    </div>
+    <%= form.text_field :name, class: "form-control col-sm-6 " %>
+    <%= form.number_field :ects, class: "form-control col-sm-1" %>
+    <%= form.submit class: "btn btn-primary btn-sm col-sm-2" %>
+  </div>
+
+  <div class="field bg-light w-50">
+    <b>Students:</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <div class="form-check form-check-inline">
+      <%= form.collection_check_boxes :student_ids, Student.all, :id, :fname  do |b|%>
+        <%= b.check_box class: "form-check-input"%>&nbsp;&nbsp;<%= b.label class: "form-check-label" %>&nbsp;&nbsp;&nbsp;&nbsp;
+        <% end %>
+    </div>
+  </div>
+<% end %>

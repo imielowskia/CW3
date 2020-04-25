@@ -1,7 +1,7 @@
 <p id="notice"><%= notice %></p>
 
 <div class="jumbotron">
-
+  <center>
 <h1>Students</h1>
 
 <table class="table table-sm w-75">
@@ -10,6 +10,7 @@
       <th>Imię</th>
       <th>Nazwisko</th>
       <th>Należy do grup:</th>
+      <th>Zapisany na przedmioty:</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -24,6 +25,11 @@
             <%= g.name %><br>
           <% end %>
         </td>
+        <td>
+          <% student.courses.each do |c| %>
+            <%= c.name %><br>
+          <% end %>
+        </td>
         <td><%= link_to 'Show', student, class: 'btn btn-primary btn-sm' %></td>
         <td><%= link_to 'Edit', edit_student_path(student), class: 'btn btn-primary btn-sm' %></td>
         <td><%= link_to 'Destroy', student, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-primary btn-sm' %></td>
@@ -35,5 +41,5 @@
 <br>
 
 <%= render partial:'form', locals: {student: Student.new} %>
-
+</center>
 </div>
