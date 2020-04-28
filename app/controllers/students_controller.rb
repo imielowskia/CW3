@@ -4,7 +4,7 @@ class StudentsController < ApplicationController
   # GET /students
   # GET /students.json
   def index
-    @students = Student.order(:name).all
+    @students = Student.order(:sname).all
   end
 
   # GET /students/1
@@ -19,6 +19,8 @@ class StudentsController < ApplicationController
 
   # GET /students/1/edit
   def edit
+    xid = params[:id].to_i
+    @student = Student.find(xid)
   end
 
   # POST /students

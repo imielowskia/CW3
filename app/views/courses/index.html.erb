@@ -1,36 +1,16 @@
-<p id="notice"><%= notice %></p>
-
 <div class="jumbotron">
 <h1>Courses</h1>
 
-<table class="table table-light table-sm table-striped">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Ects</th>
-      <th>Students:</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+  <div id='tabelka'>
 
-  <tbody>
-    <% @courses.each do |course| %>
-      <tr>
-        <td><%= course.name %></td>
-        <td><%= course.ects %></td>
-        <td>
-          <% course.students.each do |s| %>
-            <%= s.fname %><br>
-          <% end %>
-        </td>
-        <td><%= link_to 'Show', course, class: "btn btn-sm btn-primary" %></td>
-        <td><%= link_to 'Edit', edit_course_path(course), class: "btn btn-sm btn-primary" %></td>
-        <td><%= link_to 'Destroy', course, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-sm btn-primary" %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+    <%= render partial: 'lista' %>
 
-  <%= render partial: 'form', locals: {course: Course.new} %>
+  </div>
+
+  <div id="course_edit">
+
+    <%= render partial: 'form', locals: {course: Course.new} %>
+
+  </div>
 
 </div>
