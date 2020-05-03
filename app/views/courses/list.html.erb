@@ -1,0 +1,18 @@
+<div class="jumbotron">
+
+  <div><h3> Zapisy na listę kursu</h3></div>
+  <div><h2> <%= @course.name %></h2></div>
+
+  <div id="in" class="bg-light">
+    <%= render partial: "in_list" %>
+  </div>
+
+  <hr class="my-6">
+
+  <div id="out" class="bg-light">
+    <%= render partial: "out_list" %>
+  </div>
+
+  <%= link_to "Courses list", courses_path, class: "btn btn-primary" %>
+
+</div>

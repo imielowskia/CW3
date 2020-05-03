@@ -1,0 +1,21 @@
+<table class="table table-hover table-sm">
+  <thead>
+  <tr class="bg-info">
+    <th> Student</th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody>
+
+  <% @xstudents.each do |s| %>
+
+    <% if CourseStudent.where(course_id: @course.id, student_id: s.id).first == nil %>
+      <tr>
+        <td class="col-sm-4">  <%= s.fname %> </td>
+        <td> <%= link_to "Dodaj", course_append_path(id: @course.id,student_id: s.id),remote: true, class: "btn btn-sm btn-primary" %> </td>
+      </tr>
+    <% end %>
+
+  <% end %>
+  </tbody>
+</table>
