@@ -1,6 +1,12 @@
 Rails.application.routes.draw do
-  get 'courses/sabc'
-  get 'courses/scba'
+
+  get 'courses/az' , as: :course_az
+  get 'courses/za' , as: :course_za
+
+  get 'courses/:id/list' => 'courses#list', as: :course_list
+  get 'courses/:id/remove/:student_id' => 'courses#remove', as: :course_remove
+  get 'courses/:id/append/:student_id' => 'courses#append', as: :course_append
+
 
   resources :courses
   resources :groups

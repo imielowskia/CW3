@@ -10,6 +10,53 @@ class CoursesController < ApplicationController
     @courses = Course.all
   end
 
+  #sortowanie rosnące
+  def az
+    @courses = Course.order(name: :asc).all
+    respond_to :js
+  end
+
+  #sortowanie malejące
+  def za
+    @courses = Course.order(name: :desc).all
+    respond_to :js
+  end
+
+  # zapisy na listę
+  # GET /courses/1/list
+  def list
+    xcourse_id = params[:id].to_i
+    @course = Course.find(xcourse_id)
+    @xstudents = Student.all
+  end
+
+  # dodawanie do kursu
+  # GET /courses/1/append/1
+  def append
+    xcourse_id = params[:id].to_i           # id kursu
+    xstudent_id = params[:student_id].to_i  # id studenta
+    studentadd = CourseStudent.new
+    studentadd.student_id = xstudent_id
+    studentadd.course_id = xcourse_id
+    studentadd.save!
+    @course = Course.find(xcourse_id)
+    @xstudents = Student.all
+    respond_to :js
+
+  end
+
+  # usuwanie z kursu
+  # GET /courses/1/remove/1
+  def remove
+    xcourse_id = params[:id].to_i           # id kursu
+    xstudent_id = params[:student_id].to_i  # id studenta
+    xcs = CourseStudent.where(course_id: xcourse_id, student_id: xstudent_id).first
+    xcs.destroy!
+    @course = Course.find(xcourse_id)
+    @xstudents = Student.all
+    respond_to :js
+  end
+
   # GET /courses/1
   # GET /courses/1.json
   def show

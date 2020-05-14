@@ -1,16 +1,13 @@
 <div class="jumbotron">
 <h1>Courses</h1>
 
-  <div id='tabelka'>
 
+  <div id="lista">
     <%= render partial: 'lista' %>
-
   </div>
 
-  <div id="course_edit">
-
+  <div id="form">
     <%= render partial: 'form', locals: {course: Course.new} %>
-
   </div>
 
 </div>
