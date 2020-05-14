@@ -20,12 +20,5 @@
     <%= form.submit class: "btn btn-primary btn-sm col-sm-2" %>
   </div>
 
-  <div class="field bg-light w-50">
-    <b>Students:</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <div class="form-check form-check-inline">
-      <%= form.collection_check_boxes :student_ids, Student.all, :id, :fname  do |b|%>
-        <%= b.check_box class: "form-check-input"%>&nbsp;&nbsp;<%= b.label class: "form-check-label" %>&nbsp;&nbsp;&nbsp;&nbsp;
-        <% end %>
-    </div>
-  </div>
+
 <% end %>
