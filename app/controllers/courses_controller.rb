@@ -1,11 +1,12 @@
 class CoursesController < ApplicationController
-  before_action :set_course, only: [:show, :edit, :update, :destroy]
-  protect_from_forgery except: :show
+  before_action :set_course, only: [:show, :edit, :update, :destroy], except: [:sabc, :scba]
+  protect_from_forgery except: [:show, :sabc, :scba]
 
 
   # GET /courses
   # GET /courses.json
   def index
+
     @courses = Course.all
   end
 
@@ -85,6 +86,28 @@ class CoursesController < ApplicationController
       format.html { redirect_to courses_url, notice: 'Course was successfully updated.' }
       format.json { render :show, status: :ok, location: @course }
     end
+  end
+
+  # GET /courses/sabc
+  #sortowanie indexu abc
+  def sabc
+    @courses = Course.order(name: :asc).all
+
+   respond_to do |format|
+     format.js
+   end
+
+  end
+
+  # GET /courses/scba
+  # sortowanie indexu abc
+  def scba
+    @courses = Course.order(name: :desc).all
+
+    respond_to do |format|
+      format.js
+    end
+
   end
 
 

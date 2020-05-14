@@ -10,7 +10,8 @@
       <th>Imię</th>
       <th>Nazwisko</th>
       <th>Należy do grup:</th>
-      <th>Zapisany na przedmioty:</th>
+      <th>Przedmiot</th>
+      <th>Ocena:</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -27,11 +28,18 @@
         </td>
         <td>
           <% student.courses.each do |c| %>
-            <%= c.name %><br>
+           <%= c.name %><br>
+          <% end %>
+        </td>
+        <td>
+          <% student.courses.each do |c| %>
+            <% xcs = CourseStudent.select(:grade).where(student_id: student.id).where(course_id: c.id).first%>
+            <%= xcs.grade %><br>
+
           <% end %>
         </td>
         <td><%= link_to 'Show', student, class: 'btn btn-primary btn-sm' %></td>
-        <td><%= link_to 'Edit', edit_student_path(student), class: 'btn btn-primary btn-sm' %></td>
+        <td><%= link_to 'Edit', edit_student_path(student),remote: true, class: 'btn btn-primary btn-sm' %></td>
         <td><%= link_to 'Destroy', student, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-primary btn-sm' %></td>
       </tr>
     <% end %>
@@ -40,6 +48,9 @@
 
 <br>
 
+<div id="student_edit">
+
 <%= render partial:'form', locals: {student: Student.new} %>
+</div>
 </center>
 </div>
